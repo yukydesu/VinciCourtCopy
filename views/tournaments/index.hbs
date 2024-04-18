@@ -1,0 +1,30 @@
+<section>
+
+    <h1 class="tournamentTitle">Tournaments</h1>
+
+        <article>
+            <table class="tournamentListTable">
+                    <tr>
+                        <th>NAME</th>
+                        <th>DATE</th>
+                        <th>NB_MAX</th>
+                    </tr>
+                    
+                    {{#each tournamentsTable}}
+
+                    <tr>
+                        <td> <!-- clickable name redirect to detail page -->
+                            <a href="/tournaments/details?id_tournament={{this.tournament_id}}">  
+                                {{this.name}} 
+                            </a>
+                        </td>
+                        <td>{{this.date_tournament}}</td>
+                        <td>{{this.nb_max_participants}}</td>
+                    </tr>
+
+                    {{/each}}
+                    
+            </table>
+        </article>
+        
+</section>

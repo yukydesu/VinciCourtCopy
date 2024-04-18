@@ -1,0 +1,46 @@
+<section>
+  <div class="container mt-4">
+    {{#if (eq session.user.status "coach")}}
+    <h1>Messages à repondre</h1>
+    <div id="messages-list">
+      <!-- Messages seront ajoutés ici -->
+      {{#each coach}}
+      <div class="card mb-3">
+        <div class="card-body">
+          <p>{{this.message_text}}</p>
+          <p>De : {{sender_id.firstname}} {{sender_id.surname}}</p>
+          <p>Date : {{this.date_hour_message}}</p>
+          <details>
+            <summary>Reply to this message</summary>
+            <form action="/messages/replyTo" method="post">
+              <input type="hidden" name="message_id" value="{{this.message_id}}">
+              <textarea name="response" rows="3" placeholder="Our reply"></textarea>
+              <button type="submit">Reply</button>
+            </form>
+          </details>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+    {{else}}
+    <h1>Messages des utilisateurs</h1>
+    <div id="messages-list">
+      <!-- Messages seront ajoutés ici -->
+      {{#each user}}
+      <div class="card mb-3">
+        <div class="card-body">
+          <p>{{this.message_text}}</p>
+          <p>A : {{this.firstname}} {{this.surname}}</p>
+          <p>Date : {{this.date_hour_message}}</p>
+          {{#if (eq this.response_text null)}}
+          <p>Réponse : L'entraîneur n'a pas encore répondu.</p>
+          {{else}}
+          <p>Réponse : {{this.response_text}}</p>
+          {{/if}}
+        </div>
+      </div>
+      {{/each}}
+    </div>
+  </div>
+  {{/if}}
+</section>

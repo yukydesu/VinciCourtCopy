@@ -1,0 +1,46 @@
+<section>
+
+    <h1 class="creationTournamentTitle">Tournament Creation</h1>
+
+    <table class="creationTournamentTable">
+
+        <form action="/tournaments/create" method="post" class="creationTournamentForm">
+            
+            <tr>
+                <td><label for="newTournamentName"> Name </label></td>
+                <td><input type="text" name="newTournamentName"  required></td>
+            </tr>
+            <tr>
+                <td><label for="image"> Banner </label></td>
+                <td> <input type="file" name="newBanner_image" required accept=".jpeg, .png"></td>
+            </tr>
+            <tr>
+                <td><label for="newTournamentDate"> Date </label></td>
+                <td><input type="date"  name="newTournamentDate" required></td>
+            </tr>
+            <tr>
+                <td><label for="newMaxPlayers"> Max Player </label></td>
+                <td><input type="number" name="newMaxPlayers" min="1" required></td>
+            </tr>
+
+            <tr>
+                <td colspan="2"><button value="create">Create</button></td>
+            </tr>
+        
+        </form>
+    </table>
+
+    {{#exists creationDateError}}
+
+        <div class="tournamentError">The date will be in the futur !</div>
+
+    {{/exists}}
+
+    {{#exists creationNameError}}
+
+        <div class="tournamentError">There is already a tournament with this name !</div>
+
+    {{/exists}}
+
+
+</section>

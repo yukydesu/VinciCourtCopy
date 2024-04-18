@@ -1,0 +1,32 @@
+<section>
+  <h1 class = "listCourts" >list of all our courts</h1>
+    <img class="image_club" alt = "map club de tennis" src = "images/image_tennis_club.jpg"/>
+
+    {{#each courtsTable}}
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">Court {{this.tennis_court_id}}</h5>
+          <h6 class="card-subtitle mb-2 text-body-secondary"><a href="http://localhost:3000/courts/details?id={{this.tennis_court_id}}">{{this.name}} </a></h6>
+          <p class="card-text">flooring type : {{this.flooring_type}}</p>
+        </div>
+      
+      {{#if (eq ../session.user.status "coach")}}
+        <form action = "courts/update" method = "get">
+          <input type="hidden" name="id" value={{this.tennis_court_id}}>
+          <input type = "submit"  value = "modify" /> 
+        </form> 
+      </div>
+      {{/if}}
+    {{/each}}
+</section>
+
+
+
+
+
+
+
+
+
+
+

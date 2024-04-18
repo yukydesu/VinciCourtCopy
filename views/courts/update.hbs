@@ -1,0 +1,38 @@
+<h1>Modify the court</h1>
+
+{{#exists notFoundError}}
+
+    <div class="notFoundError">!error : court was not founded</div>
+    
+{{else}}
+  <div class="container mt-5">
+    <form action="/courts/update" method="post" enctype="multipart/form-data">
+      <div class="form-group">
+        <label for="inputText">name:</label>
+        <input name="court_name" type="text" class="form-control" id="inputText" placeholder="{{court.name}}" required>
+      </div>
+      <div class="form-group">
+        <label for="inputText">location:</label>
+        <input name="court_location" type="text" class="form-control" id="inputText" placeholder="{{court.location}}" required>
+      </div>
+      <div class="form-group">
+        <label for="inputImage">Image:</label>
+        <input name="court_picture_path" type="file" class="form-control-file" id="inputImage" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="exampleFormControlSelect1">flooring_type:</label>
+        <select name="court_flooring_type" class="form-control" id="exampleFormControlSelect1" required>
+          <option>actual surface : {{court.flooring_type}}</option>
+          <option>clay</option>
+          <option>grass</option>
+          <option>artificial</option>
+        </select>
+      </div>
+        <input type="hidden" name="id" value="{{court.tennis_court_id}}">
+        <input name= "submit" type = "submit"  value = "submit" /> 
+    </form>
+  </div>
+
+{{/exists}}
+

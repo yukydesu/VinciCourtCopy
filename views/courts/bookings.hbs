@@ -1,0 +1,19 @@
+<h4 class = "listBookings">List of all booked courts for the following week</h4>
+    <form action = "/courts/unbook" method = "post">
+        
+        <table class="bookingsListTable">
+            {{#each courtsBookingsTable}}
+            <tr>
+                <th>{{this.date_booking}}</th>
+                
+            </tr>
+            
+            <tr>
+                <td>{{court.name}}</td>
+                <td><input type = "submit"  value = "unbook" /></td>
+            </tr>
+            {{/each}}
+        </table>
+        
+        
+    </form>

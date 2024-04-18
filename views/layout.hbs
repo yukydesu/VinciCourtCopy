@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Site</title>
+    <link rel="shortcut icon" href="/images/icon.png">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <!-- Latest compiled and minified CSS -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                    <img src="/images/icon.png" alt="Avatar Logo" style="width:70px;" class="rounded-pill">
+                </a>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/tournaments">Tournament list</a>
+                        </li>
+                        {{#if (eq session.user.status "coach")}}
+                            <li class="nav-item">
+                                <a class="nav-link" href="/tournaments/creation">Tournament Creation</a>
+                            </li>
+                        {{/if}}
+                        <li class="nav-item">
+                            <a class="nav-link" href="/courts">Court list</a>
+                        </li>
+                        {{#if session.user}}
+                        <li class="nav-item">
+                            <a class="nav-link" href="/courts/bookings">Courts booking</a>
+
+                        </li>
+                        {{/if}}
+                        <li class="nav-item">
+                            <a class="nav-link" href="/coaches">Coach list</a>
+                        </li>  
+                        {{#if session.user}}
+                            <li class="nav-item">
+                                <a class="nav-link" href="/messages">Coach Message</a>
+                            </li>
+                        {{/if}}
+                    </ul>
+                </div>
+                <div>
+                    <ul class ="navbar-nav me-auto mb-2 mb-lg-0">
+                        {{#if session.user}}
+                        <li class="nav-item">
+                            <a class="nav-link"href="/users/logout">Logout</a>
+                        </li>
+                        {{else}}
+                        <li class="nav-item">
+                            <a class="nav-link"href="/users/register">Register</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/users/login">Login</a>
+                        </li>
+                        {{/if}}
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    {{{body}}}
+    <footer>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+              <!-- Footer Begin -->
+          <footer>
+            <section class="footer-section">
+                <div>
+                    <hr class="footer-separator">
+                </div>
+                <article class="footer-container">
+
+                    <div class="bloc footer-services">
+                        <h3>Services</h3>
+                        <ul>
+                            <li><a href="/tournaments">Tournament</a></li>
+                            <li><a href="/courts">Courts</a></li>
+                            <li><a href="/coaches">Coaches</a></li> 
+                        </ul>
+                    </div>
+
+                    <div class="bloc footer-contact">
+                        <h3>Stay in contact</h3> 
+                        <p>+32 86 74 85 99</p>
+                        <p>vincicourt@contact.be </p>
+                        <p>Bd de l'Humanité 350, 1190 Forest</p>
+
+                    </div>
+
+                    <div class="bloc footer-opening">
+                        <h3>Thanks</h3>
+                        <ul>
+                            <li>Kyllian Delbauche KIKI</li>
+                            <li>Ethan Vandenbergen JA</li>
+                            <li>Sacha Paoli SACHU</li>
+                        </ul>
+                    </div>
+
+                    <div class="bloc footer-social">
+                        <h3>Networks</h3>
+                        <ul>
+                            <li><a href="#"><img src="/images/instagram-logo.png" alt="instagram-logo"></a></li>
+                            <li><a href="#"><img src="/images/facebook-logo.png" alt="facebook-logo"></a></li>
+                            <li><a href="#"><img src="/images/x-logo.png" alt="x-logo"></a></li>
+                        </ul>
+                    </div>
+                </article>
+            </section>
+        </footer>
+        <!-- /End Footer -->
+</body>
+
+</html>

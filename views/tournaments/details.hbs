@@ -1,0 +1,120 @@
+<section class="tournament-details-page-section">
+
+    <h1 class="tournaments-details-section__title">Details </h1>
+
+    {{#exists tournamentNotFoundError}}
+
+        <div class="tournaments-details-section__notFound-error">Tournaments not founded</div>
+
+    {{else}}
+
+    <section class="tournament-details-section">
+
+        <article class="tournament-details">
+
+            <table class="tournament-details-table">
+
+                {{#if (eq session.user undefined)}}
+
+                    <caption class="tournament-details-table__caption">
+                        You must be logged in to register
+                    </caption>
+
+                {{else}}
+
+                    
+                {{/if}}
+
+                <thead>
+                    <tr>
+                        <th>Banner</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td rowspan="6"><img src="/{{tournament.banner_image_path}}" class="tournament-details__banner" alt="Banner Image"></td>
+                    </tr>
+
+                    <tr class="tournament-details-table__name">
+                        <td>Name</td>
+                        <td>{{tournament.name}}</td>
+                    </tr>
+
+                    <tr class="tournament-details-table__date">
+                        <td>Date</td>
+                        <td>{{tournament.date_tournament}}</td>
+                    </tr>
+
+                    <tr class="tournament-details-table__creator">
+                        <td>Creator</td>
+                        <td>
+                            <a href="/coaches/details?id={{tournament.creator_id}}">
+                            {{tournament.creator_firstname}} {{tournament.creator_surname}}
+                            </a>
+                        </td>
+                    </tr>
+
+                    <tr class="tournament-details-table__nb-players">
+                        <td>Players</td>
+                        <td>{{tournament.nb_players}}</td>
+                    </tr>
+
+                    <tr class="tournament-details-table__max-players">
+                        <td>Max players</td>
+                        <td>{{tournament.nb_max_participants}}</td>
+                    </tr>
+                </tbody>
+
+
+                {{#exists registered}}
+
+                    {{#if (eq registered true)}}
+
+                        <tfoot>
+                            <tr>
+                                <td class="tournament-details-table__button" colspan="3">
+                                    <form method="post" action="/tournaments/unregister">
+                                        <input type="hidden" name="id_tournament" value="{{tournament.tournament_id}}">
+                                        <input class="tournament-details-table__unregister" type="submit" value="Unregister">
+                                    </form>
+                                </td>
+                            </tr>
+                        </tfoot>
+
+                    {{else}}
+
+                       <tfoot>
+                            <tr>
+                                <td class="tournament-details-table__button" colspan="3">
+                                    <form class="form1" method="post" action="/tournaments/register">
+                                        <input type="hidden" name="id_tournament" value="{{tournament.tournament_id}}">
+                                        <input class="tournament-details-table__register" type="submit" value="Register">
+                                    </form>
+                                </td>
+                            </tr>
+                        </tfoot>
+                        
+                    {{/if}}
+
+                {{else}}
+
+                    <caption class="tournament-details-table__caption">
+                        this tournament has already passed
+                    </caption>
+
+                {{/exists}}
+                 
+            </table>
+
+        </article>
+
+    </section>
+
+    {{/exists}}
+
+
+
+</section>

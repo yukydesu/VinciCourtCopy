@@ -1,0 +1,41 @@
+<section>
+    <h1 class="title-index">{{coach.firstname}} {{coach.surname}}</h1>
+
+
+    <article>
+        <table class="tournamentListTable">
+            <tr>
+                <th>firstname</th>
+                <th>surname</th>
+                <th>email</th>
+                <th>biography</th>
+                <th>Picture</th>
+            </tr>
+
+            <tr>
+                <td> <!-- clickable name redirect to detail page -->
+                    {{coach.firstname}}
+                </td>
+                <td>{{coach.surname}} </td>
+                <td>{{coach.email}}</td>
+                <td>{{coach.biography}}</td>
+                <td><img src="/{{coach.picture_path}}"></td>
+                {{#if (eq session.user.status "coach")}}
+                <a href='http://localhost:3000/coaches/updateBio?id={{coach.user_id}}'><button>update</button></a>
+                {{/if}}
+            </tr>
+        </table>
+    </article>
+    {{#if session.user}}
+    {{#if (eq session.user.status "regular")}}
+    <form method="post" action="/coaches/sendTo">
+        <div>
+            <label> Message : </label>
+            <textarea name="message"></textarea>
+            <input type="hidden" name="idReceiver" value={{coach.user_id}}>
+            <button type="submit">Submit</button>
+        </div>
+    </form>
+    {{/if}}
+    {{/if}}
+</section>

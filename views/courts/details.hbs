@@ -1,0 +1,60 @@
+<h1 class="courtDetails">Details</h1>
+
+{{#exists notFoundError}}
+
+    <div class="notFoundError">!error : court was not founded</div>
+
+    {{else}}
+        {{#if (eq court.tennis_court_id 1)}}
+            <img class="image_tennisCourt1" alt = "court1" src = "/images/tennis_court_1.png"/>
+        {{/if}}
+        {{#if (eq court.tennis_court_id 2)}}
+            <img class="image_tennisCourt2" alt = "court2" src = "/images/tennis_court_2.png"/>
+        {{/if}}
+        {{#if (eq court.tennis_court_id 3)}}
+            <img class="image_tennisCourt3" alt = "court3" src = "/images/tennis_court_3.png"/>
+        {{/if}}
+            <div class="card" style="width: 18rem;">
+                <img src="/{{court.picture_path}}" class="card-img-top" alt="picture of tennis court">
+                <div class="card-body">
+                    <h5 class="card-title">{{court.name}}</h5>
+                    <p class="card-text">flooring-type : {{court.flooring_type}} <br>
+                                        location : {{court.location}}</p>
+                </div>
+            </div>    
+        
+            {{#if session.user}}
+                <h4 class = "bookDay">Book this court for the following week</h4>
+                <form action = "/courts/book" method = "post">
+                    
+                    <table class="bookingsTable">
+                        <thead>
+                            
+                            <tr>
+                                {{#each weekDates}}
+                                <th>{{this}}</th>  
+                                {{/each}}  
+                            </tr>
+                            
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><input type = "checkbox" name = "choix[]" value = "choix1"/></td>
+                                <td><input type = "checkbox" name = "choix[]" value = "choix1"/></td>
+                                <td><input type = "checkbox" name = "choix[]" value = "choix1"/></td>
+                                <td><input type = "checkbox" name = "choix[]" value = "choix1"/></td>
+                                <td><input type = "checkbox" name = "choix[]" value = "choix1"/></td>
+                                <td><input type = "checkbox" name = "choix[]" value = "choix1"/></td>
+                                <td><input type = "checkbox" name = "choix[]" value = "choix1"/></td>
+                            </tr>
+                        </tbody>
+                    </table><br>
+                    <input type = "submit"  value = "book" />
+                </form> 
+    
+            {{/if}}
+
+            
+
+
+{{/exists}}
